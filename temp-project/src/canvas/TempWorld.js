@@ -12,9 +12,9 @@ export class TempWorld extends Phaser.Scene {
     constructor() {
         super({ key: 'TempWorld' });
 
-        this.init();
-
         this.#TILE_SIZE = 64; // TODO: 변경해야 함
+        
+        this.init();
     }
 
     init() {
