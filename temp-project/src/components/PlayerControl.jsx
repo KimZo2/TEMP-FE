@@ -15,7 +15,7 @@ export default function PlayerControl() {
 
   return (
   <div>
-    <div ref={container} />
+    <div ref={container} id="map-container"/>
     <Chat/>  
   </div>
   );

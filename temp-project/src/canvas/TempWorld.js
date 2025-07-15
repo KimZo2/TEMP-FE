@@ -13,7 +13,7 @@ export class TempWorld extends Phaser.Scene {
         super({ key: 'TempWorld' });
 
         this.#TILE_SIZE = 64; // TODO: 변경해야 함
-        
+
         this.init();
     }
 
@@ -39,6 +39,7 @@ export class TempWorld extends Phaser.Scene {
         this.setCharacter(this.getCenterSpawnLocation());
         this.setCameraFollow();
         this.createKeyboardCursor();
+        this.setNickName("Joy", "Online");
     }
 
     // 맵 업데이트
@@ -51,6 +52,14 @@ export class TempWorld extends Phaser.Scene {
         if (this.cursors.right.isDown) p.setVelocityX(speed);
         if (this.cursors.up.isDown) p.setVelocityY(-speed);
         if (this.cursors.down.isDown) p.setVelocityY(speed);
+
+        // 닉네임과 상태 텍스트 위치 업데이트 (캐릭터 위)
+        this.updateNickNameAndStatus();
+    }
+
+    updateNickNameAndStatus() {
+        this.nickname.setPosition(this.player.x - this.nickname.width / 2, this.player.y - 80);
+        this.status.setPosition(this.player.x - this.status.width / 2, this.player.y - 62);
     }
 
     createMap(tileName) {
@@ -67,6 +76,24 @@ export class TempWorld extends Phaser.Scene {
         layer.fill(0);
 
         return this;
+    }
+
+    setNickNameAndStatus(name, status) {
+        this.nickname = this.add.text(0, 0, '닉네임: Zoey', {
+            fontSize: '14px',
+            fill: '#fff',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            padding: { x: 5, y: 2 },
+            align: 'center'
+        });
+
+        this.status = this.add.text(0, 0, '상태: Online', {
+            fontSize: '12px',
+            fill: '#0f0',
+            backgroundColor: 'rgba(0,0,0,0.3)',
+            padding: { x: 4, y: 2 },
+            align: 'center'
+        });
     }
 
 

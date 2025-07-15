@@ -9,7 +9,7 @@ export const createGame = (config) => {
 export const configure = () => {
     return new TempWorldConfigBuilder()
             .type(Phaser.AUTO)
-            .parent("??")
+            .parent("map-container")
             .scene(TempWorld)
             .width(1500)
             .height(1500)
