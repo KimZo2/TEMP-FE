@@ -14,7 +14,7 @@ export class TempWorld extends Phaser.Scene {
 
         this.#TILE_SIZE = 64; // TODO: 변경해야 함
 
-        this.init();
+        // this.init();
     }
 
     init() {
@@ -30,7 +30,7 @@ export class TempWorld extends Phaser.Scene {
     // 맵 로딩에 필요한 데이터 fetch
     preload() {
         this.load.image('background', '/assets/mapTile1.png'); // 바닥
-        this.load.image('character', '/assets/manWithHat.svg'); // 캐릭터
+        this.load.image('player', '/assets/example-icon.png');
     }
 
     // 맵 생성
@@ -39,7 +39,7 @@ export class TempWorld extends Phaser.Scene {
         this.setCharacter(this.getCenterSpawnLocation());
         this.setCameraFollow();
         this.createKeyboardCursor();
-        this.setNickName("Joy", "Online");
+        this.setNickNameAndStatus("Joy", "Online");
     }
 
     // 맵 업데이트
