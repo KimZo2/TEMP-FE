@@ -9,18 +9,24 @@ export class TempWorld extends Phaser.Scene {
 
     #MAP_SIZE = {}
 
-    constructor(){
+    constructor() {
         super({ key: 'TempWorld' });
-        this.#TILE_SIZE = tileSize;
 
-        this.#MAP_SIZE.height = height;
-        this.#MAP_SIZE.width = width;
+        this.init();
 
-        this.#TILE_COUNT.height = height / tileSize;
-        this.#TILE_COUNT.width = width / tileSize;
+        this.#TILE_SIZE = 64; // TODO: 변경해야 함
     }
 
-    
+    init() {
+        const config = this.sys.game.config;
+        this.#MAP_SIZE.width = config.width;
+        this.#MAP_SIZE.height = config.height;
+
+        this.#TILE_COUNT.width = this.#MAP_SIZE.width / this.#TILE_SIZE;
+        this.#TILE_COUNT.height = this.#MAP_SIZE.height / this.#TILE_SIZE;
+    }
+
+
     // 맵 로딩에 필요한 데이터 fetch
     preload() {
         this.load.image('background', '/assets/mapTile1.png'); // 바닥
@@ -64,17 +70,17 @@ export class TempWorld extends Phaser.Scene {
     }
 
 
-    setCharacter({spawnX, spawnY}) {
+    setCharacter({ spawnX, spawnY }) {
         this.player = this.physics.add
             .image(spawnX, spawnY, 'character')
             .setCollideWorldBounds(true);
-        
+
         return this;
     }
 
-    
-    setCameraFollow(){
-        this.cameras.main.startFollow(this.player, false, 1, 1); 
+
+    setCameraFollow() {
+        this.cameras.main.startFollow(this.player, false, 1, 1);
         return this;
     }
 
@@ -90,7 +96,9 @@ export class TempWorld extends Phaser.Scene {
         const spawnX = worldW / 2;
         const spawnY = worldH / 2;
 
-        return {spawnX, spawnY};
+        return { spawnX, spawnY };
     }
+
+
 }
 
