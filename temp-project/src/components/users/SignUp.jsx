@@ -1,28 +1,57 @@
 import { useState } from 'react';
-import './SignUp.css'; 
+import './SignUp.css';
 
-export default function SignUp() {
-  const [form, setForm] = useState({ id: '', pw: '', nickname: '' });
+export default function SignUp({onSuccess}) {
 
+  // 유저 정보 초기화 (id, pw, nickname)
+  const [form, setForm] = useState({ userId: '', userPw: '', nickname: '' });
+
+  // 입력한 유저 정보가 form 값에 담긴다 
   const handleChange = e => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = e => {
+  // '가입하기' (제출) 버튼 클릭 시, 백엔드 서버로 요청 보내기
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('회원가입 데이터:', form);
+
+    try {
+      const response = await fetch('https://your-server.com/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form) // userId, userPw, nickname 직렬화
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('회원가입 성공!');
+        onSuccess?.(result); // 회원가입 성공 시 부모에게 알림 
+      } else {
+        alert(result.message || '회원가입 실패');
+      }
+    } catch (error) {
+      console.error('회원가입 에러:', error);
+      alert('서버 통신 오류');
+    }
   };
+
 
   return (
+
+    // 회원가입을 위한 폼 (input 태그들로 구성)
     <form className="signup-form" onSubmit={handleSubmit}>
       <h2 className="signup-title">회원가입</h2>
 
       <div className="signup-field">
-        <label htmlFor="id">아이디</label>
+        <label>아이디</label>
         <input
-          id="id"
-          name="id"
-          value={form.id}
+          id="userId"
+          name="userId"
+          value={form.userId}
           onChange={handleChange}
           required
           autoComplete="username"
@@ -30,12 +59,12 @@ export default function SignUp() {
       </div>
 
       <div className="signup-field">
-        <label htmlFor="pw">비밀번호</label>
+        <label>비밀번호</label>
         <input
-          id="pw"
+          id="userPw"
           type="password"
-          name="pw"
-          value={form.pw}
+          name="userPw"
+          value={form.userPw}
           onChange={handleChange}
           required
           autoComplete="new-password"
@@ -43,7 +72,7 @@ export default function SignUp() {
       </div>
 
       <div className="signup-field">
-        <label htmlFor="nickname">닉네임</label>
+        <label>닉네임</label>
         <input
           id="nickname"
           name="nickname"
