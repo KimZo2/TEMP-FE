@@ -1,18 +1,44 @@
 import { useState } from 'react';
-import './SignIn.css'; 
+import './SignIn.css';
 
 export default function SignIn({ onSuccess }) {
+
+  // 유저 정보 초기화
   const [form, setForm] = useState({ id: '', pw: '' });
 
+  // 정보 입력 시, 유저 정보가 form에 들어온다
   const handleChange = e => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = e => {
+  // 제출 ('로그인') 시, 서버로 유저 정보 전송
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('로그인 데이터:', form);
-    onSuccess?.();
+
+    try {
+      const response = await fetch('https://your-server.com/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form) // id, pw 직렬화
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log('로그인 성공:', result);
+        onSuccess?.(result); // 로그인 성공 시 부모에게 알림 
+      } else {
+        alert(result.message || '로그인 실패');
+      }
+    } catch (error) {
+      console.error('로그인 에러:', error);
+      alert('서버 통신 오류');
+    }
   };
+
 
   return (
     <form className="signin-form" onSubmit={handleSubmit}>
@@ -21,22 +47,26 @@ export default function SignIn({ onSuccess }) {
       <div className="signin-field">
         <label>아이디</label>
         <input
+          id="id"
           name="id"
           type="text"
           value={form.id}
           onChange={handleChange}
           required
+          autoComplete="username"
         />
       </div>
 
       <div className="signin-field">
         <label>비밀번호</label>
         <input
+          id="pw"
           name="pw"
           type="password"
           value={form.pw}
           onChange={handleChange}
           required
+          autoComplete="current-password"
         />
       </div>
 

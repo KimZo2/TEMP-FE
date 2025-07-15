@@ -1,47 +1,57 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import SignUp from './users/SignUp';
 import SignIn from './users/SignIn';
 import Modal from './ui/Modal';
 
-
 const Header = () => {
-  
-  // 모달 종류: 'signup' | 'signin' | null
-  const [modalType, setModalType] = useState(null);
 
-  const openModal = (type) => {
-    setModalType(type); 
+  const [modalType, setModalType] = useState(null); // signup, signin, null
+  const [user, setUser] = useState(null);  
+
+  const openModal = (type) => setModalType(type);
+  const closeModal = () => setModalType(null);
+
+  // 로그인 성공 시 호출할 함수
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);    // user 상태에 로그인 유저 정보 저장
+    closeModal();         // 모달 닫기
   };
 
-  const closeModal = () => {
-    setModalType(null);
+  // 로그아웃 처리
+  const handleLogout = () => {
+    setUser(null);
   };
 
   return (
-  <header style={headerStyle}>
-    <nav style={navStyle}>
-      <button className="text-button" onClick={() => openModal('signup')}>회원가입</button>
-      <button className="text-button" onClick={() => openModal('signin')}>로그인</button>
+    <header style={headerStyle}>
+      <nav style={navStyle}>
+        {user ? (
+          <button className="text-button" onClick={handleLogout}>로그아웃</button>
+        ) : (
+          <>
+            <button className="text-button" onClick={() => openModal('signup')}>회원가입</button>
+            <button className="text-button" onClick={() => openModal('signin')}>로그인</button>
+          </>
+        )}
 
-      {modalType === 'signup' && createPortal(
-        <Modal onClose={closeModal}>
-          <SignUp />
-        </Modal>, document.body
-      )}
+        {modalType === 'signup' && createPortal(
+          <Modal onClose={closeModal}>
+            <SignUp onSuccess={handleLoginSuccess} />
+          </Modal>, document.body
+        )}
 
-      {modalType === 'signin' && createPortal(
-        <Modal onClose={closeModal}>
-          <SignIn />
-        </Modal>, document.body
-      )}
-    </nav>
-  </header>
+        {modalType === 'signin' && createPortal(
+          <Modal onClose={closeModal}>
+            <SignIn onSuccess={handleLoginSuccess} />
+          </Modal>, document.body
+        )}
+      </nav>
+    </header>
   );
+};
 
-}
-
-export default Header
+export default Header;
 
 const headerStyle = {
   width: '100%',
@@ -62,4 +72,3 @@ const navStyle = {
   display: 'flex',
   gap: '10px',
 };
-
