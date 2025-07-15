@@ -71,7 +71,7 @@ header {
 
 .chat-send {
   padding: 0.5rem 1rem;
-  background-color: #007bff;
+  background-color: gray;
   color: white;
   border: none;
   border-radius: 0 5px 5px 0;
