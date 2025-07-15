@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 
-const Chat = () => {
+const Chat = ({ nickname }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
   const handleSend = (e) => {
     e.preventDefault();
     if (input.trim() === '') return;
-    setMessages([input,...messages]);
+
+    const newMessage = {
+      nickname,
+      text: input,
+    };
+
+    setMessages([newMessage, ...messages]);
     setInput('');
   };
 
@@ -36,7 +42,7 @@ const Chat = () => {
       >
         {messages.map((msg, i) => (
           <div key={i} style={{ marginBottom: '5px', fontSize: '14px' }}>
-            {msg}
+            <strong>[{msg.nickname}]</strong> {msg.text}
           </div>
         ))}
       </div>
