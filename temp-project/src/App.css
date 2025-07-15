@@ -40,3 +40,30 @@
 .read-the-docs {
   color: #888;
 }
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;       /* 화면 가로 꽉 채우기 */
+  background-color: white;  /* 배경색 지정 (필요에 따라 변경) */
+  z-index: 100;      /* 다른 요소보다 위에 오도록 */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 살짝 그림자 효과 (선택) */
+  padding: 10px 20px; /* 적당한 여백 */
+}
+
+.text-button {
+  all: unset;
+  appearance: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+  padding: 4px 8px;
+}
+
+.text-button:hover {
+  text-decoration: underline;
+}
