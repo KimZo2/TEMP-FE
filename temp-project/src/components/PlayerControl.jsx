@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import Phaser from 'phaser';
+import Chat from './chats/Chat'
 
 export default function PlayerControl() {
   const container = useRef(null);
@@ -59,5 +60,10 @@ export default function PlayerControl() {
     return () => gameRef.current.destroy(true);
   }, []);
 
-  return <div ref={container} />;
+  return (
+  <div>
+    <div ref={container} />
+    <Chat/>  
+  </div>
+  );
 }
