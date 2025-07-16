@@ -31,6 +31,12 @@ const Header = () => {
   // 로그아웃 처리
   const handleLogout = () => {
     setUser(null);
+    
+    localStorage.removeItem("token");
+    localStorage.removeItem("nickname");
+
+    setLogin(false);
+    alert("로그아웃 되었습니다.");
   };
 
   return (
