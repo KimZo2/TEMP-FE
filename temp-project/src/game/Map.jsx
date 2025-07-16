@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import Phaser from 'phaser';
-import { createGame, configure, terminate } from '@/canvas/TempWorldUtil'
+import { createGame, configure, terminate } from '@/game/util/TempWorldUtil'
 
 export default function Map({ children }) {
 

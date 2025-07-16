@@ -1,13 +1,13 @@
 // App.js (수정 예시)
-import DefaultLayout from './main/DefaultLayout';
-import Map from './game/Map';
-import Header from './components/Header';
-import Body from './main/Body';
-import Chat from '@/components/chats/Chat'
-import {LoginContext} from './users/LoginContext'
-import './App.css';
+import DefaultLayout from '@/main/DefaultLayout';
+import Map from '@/game/Map';
+import Header from '@/main/Header';
+import Body from '@/main/Body';
+import Chat from '@/chats/Chat'
+import {LoginContext} from '@/users/LoginContext'
+import '@/App.css';
 import { createContext, useState } from 'react';
-import Main from './components/Main';
+import Main from '@/main/Main';
 
 export default function App() {
 
@@ -18,8 +18,8 @@ export default function App() {
       <DefaultLayout>
         <LoginContext.Provider value={setLogin}>
           <Header />
-          { ! isLogin && <Main/>}
           <Body>
+            { ! isLogin && <Main/>}
             { isLogin && <Map/>}
           </Body>
         </LoginContext.Provider>
