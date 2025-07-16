@@ -25,10 +25,10 @@ export default function SignIn({ onSuccess }) {
         body: JSON.stringify(form) // id, pw 직렬화
       });
 
-      const result = await response;
+      const result = await response.json();
 
       if (response.ok) {
-        console.log('로그인 성공:', result);
+        console.log('로그인 성공:', result['nickname']);
         onSuccess?.(result); // 로그인 성공 시 부모에게 알림 
       } else {
         alert(result.message || '로그인 실패');
