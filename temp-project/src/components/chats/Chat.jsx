@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 
-const Chat = () => {
-
+const Chat = ({ nickname }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
   // 제출 버튼 클릭 시, 공백이 아닌 value(input)을 기존 매시지 배열에 갱신
+
   const handleSend = (e) => {
     e.preventDefault();
     if (input.trim() === '') return;
-    setMessages([...messages, input]);
+
+    const newMessage = {
+      nickname,
+      text: input,
+    };
+
+    setMessages([newMessage, ...messages]);
     setInput('');
   };
 
@@ -47,6 +53,6 @@ const Chat = () => {
         </form>
       </div>
   );
-}
+};
 
-export default Chat
+export default Chat;
