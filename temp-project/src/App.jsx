@@ -1,10 +1,10 @@
 // App.js (수정 예시)
-import DefaultLayout from './layouts/DefaultLayout';
-import Map from './components/Map';
+import DefaultLayout from './main/DefaultLayout';
+import Map from './game/Map';
 import Header from './components/Header';
-import Body from './components/Body';
+import Body from './main/Body';
 import Chat from '@/components/chats/Chat'
-import {LoginContext} from './components/users/LoginContext'
+import {LoginContext} from './users/LoginContext'
 import './App.css';
 import { createContext, useState } from 'react';
 
