@@ -79,7 +79,7 @@ export class TempWorld extends Phaser.Scene {
 
     setNickNameAndStatus(name, status) {
         this.nickname = this.add.text(0, 0, `닉네임: ${name}`, {
-            fontSize: '14px',
+            fontSize: '15px',
             fill: '#fff',
             backgroundColor: 'rgba(0,0,0,0.5)',
             padding: { x: 5, y: 2 },
@@ -87,7 +87,7 @@ export class TempWorld extends Phaser.Scene {
         });
 
         this.status = this.add.text(0, 0, `상태: ${status}`, {
-            fontSize: '12px',
+            fontSize: '15px',
             fill: '#0f0',
             backgroundColor: 'rgba(0,0,0,0.3)',
             padding: { x: 4, y: 2 },
