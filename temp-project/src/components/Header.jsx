@@ -7,7 +7,7 @@ import Modal from './ui/Modal';
 const Header = () => {
 
   const [modalType, setModalType] = useState(null); // signup, signin, null
-  const [user, setUser] = useState(null);  
+  const [user, setUser] = useState(null);
 
   const openModal = (type) => setModalType(type);
   const closeModal = () => setModalType(null);
@@ -24,30 +24,32 @@ const Header = () => {
   };
 
   return (
-    <header style={headerStyle}>
-      <nav style={navStyle}>
-        {user ? (
-          <button className="text-button" onClick={handleLogout}>로그아웃</button>
-        ) : (
-          <>
-            <button className="text-button" onClick={() => openModal('signup')}>회원가입</button>
-            <button className="text-button" onClick={() => openModal('signin')}>로그인</button>
-          </>
-        )}
+    <div>
+      <header style={headerStyle}>
+        <nav style={navStyle}>
+          {user ? (
+            <button className="text-button" onClick={handleLogout}>로그아웃</button>
+          ) : (
+            <>
+              <button className="text-button" onClick={() => openModal('signup')}>회원가입</button>
+              <button className="text-button" onClick={() => openModal('signin')}>로그인</button>
+            </>
+          )}
 
-        {modalType === 'signup' && createPortal(
-          <Modal onClose={closeModal}>
-            <SignUp onSuccess={handleLoginSuccess} />
-          </Modal>, document.body
-        )}
+          {modalType === 'signup' && createPortal(
+            <Modal onClose={closeModal}>
+              <SignUp onSuccess={handleLoginSuccess} />
+            </Modal>, document.body
+          )}
 
-        {modalType === 'signin' && createPortal(
-          <Modal onClose={closeModal}>
-            <SignIn onSuccess={handleLoginSuccess} />
-          </Modal>, document.body
-        )}
-      </nav>
-    </header>
+          {modalType === 'signin' && createPortal(
+            <Modal onClose={closeModal}>
+              <SignIn onSuccess={handleLoginSuccess} />
+            </Modal>, document.body
+          )}
+        </nav>
+      </header>
+    </div>
   );
 };
 

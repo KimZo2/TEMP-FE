@@ -1,8 +1,8 @@
 const Body = ({ children }) => {
   return (
-    <main>
+    <div className="flex flex-col">
       {children}
-    </main>
+    </div>
   );
 };
 

@@ -33,6 +33,7 @@ header {
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  position: absolute;
 }
 
 .chat-messages {

@@ -3,19 +3,19 @@ import { TempWorldConfigBuilder } from "./TempWorldConfig";
 import { TempWorld } from "./TempWorld";
 
 export const createGame = (config) => {
-  return new Phaser.Game(configure());
+  return new Phaser.Game(config);
 }
 
-export const configure = () => {
+export const configure = (parent) => {
     return new TempWorldConfigBuilder()
             .type(Phaser.AUTO)
-            .parent("map-container")
+            .parent(parent)
             .scene(TempWorld)
-            .width(1500)
-            .height(1500)
+            .width(800)
+            .height(600)
             .scaleAutoCenter(Phaser.Scale.CENTER_BOTH)
             .scaleMode(Phaser.Scale.FIT)
-            .scaleWidth(1200).scaleHeight(900)
+            .scaleWidth(800).scaleHeight(600)
             .physicsDefault("arcade")
             .physicsArcadeGravity({ x:0, y:0})
             .build();
