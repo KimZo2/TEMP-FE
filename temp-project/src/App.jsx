@@ -18,8 +18,8 @@ export default function App() {
       <DefaultLayout>
         <LoginContext.Provider value={setLogin}>
           <Header />
-          { ! isLogin && <Main/>}
           <Body>
+            { ! isLogin && <Main/>}
             { isLogin && <Map/>}
           </Body>
         </LoginContext.Provider>

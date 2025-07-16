@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 const Main = () => {
   const [stars, setStars] = useState([]);
 
-  // 별 초기화 + 애니메이션
   useEffect(() => {
     const generateStars = () =>
       Array.from({ length: 100 }, (_, i) => ({
@@ -41,7 +40,6 @@ const Main = () => {
 
   return (
     <div style={styles.container}>
-        
       {/* 별들 배경 */}
       <div style={styles.starField}>
         {stars.map(star => (
@@ -105,7 +103,7 @@ const Main = () => {
 const styles = {
   container: {
     minHeight: '100vh',
-    background: 'linear-gradient(135deg, #edc872 0%, #445584 50%, #0c0b2e 100%)',
+    background: 'linear-gradient(135deg, #000000ff 0%, #000000ff 50%, #000000ff 100%)',
     position: 'relative',
     overflow: 'hidden',
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
@@ -143,14 +141,16 @@ const styles = {
     maxWidth: '800px'
   },
   mainTitle: {
+    fontFamily: '"Press Start 2P", cursive', 
     color: '#fff',
-    fontSize: '1.25rem',
+    fontSize: '1rem',
     fontWeight: '600',
     letterSpacing: '0.05em',
     textTransform: 'uppercase'
   },
   subtitle: {
-    fontSize: '4rem',
+    fontFamily: '"Press Start 2P", cursive', 
+    fontSize: '2.5rem',
     fontWeight: '900',
     lineHeight: '1.1',
     background: 'linear-gradient(90deg, #ffffff 0%, #d1d5db 100%)',
@@ -159,8 +159,9 @@ const styles = {
     backgroundClip: 'text'
   },
   description: {
+    // fontFamily: '"Press Start 2P", cursive', 
     color: '#d1d5db',
-    fontSize: '1.125rem',
+    fontSize: '0.875rem',
     lineHeight: '1.6',
     maxWidth: '32rem'
   },
@@ -178,7 +179,6 @@ const styles = {
     borderRadius: '0.5rem',
     border: 'none',
     fontSize: '1.125rem',
-    fontWeight: '600',
     cursor: 'pointer',
     boxShadow: '0 10px 15px rgba(0, 0, 0, 0.1)',
     transition: 'all 0.3s',
