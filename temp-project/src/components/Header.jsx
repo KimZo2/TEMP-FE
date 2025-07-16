@@ -38,7 +38,7 @@ const Header = () => {
 
           {modalType === 'signup' && createPortal(
             <Modal onClose={closeModal}>
-              <SignUp onSuccess={handleLoginSuccess} />
+              <SignUp onClose={closeModal} />
             </Modal>, document.body
           )}
 

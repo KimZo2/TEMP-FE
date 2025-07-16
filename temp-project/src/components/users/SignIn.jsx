@@ -4,7 +4,7 @@ import './SignIn.css';
 export default function SignIn({ onSuccess }) {
 
   // 유저 정보 초기화
-  const [form, setForm] = useState({ id: '', pw: '' });
+  const [form, setForm] = useState({ userId: '', userPw: '' });
 
   // 정보 입력 시, 유저 정보가 form에 들어온다
   const handleChange = e => {
@@ -17,7 +17,7 @@ export default function SignIn({ onSuccess }) {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://your-server.com/api/login', {
+      const response = await fetch('http://192.168.1.31:8080/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ export default function SignIn({ onSuccess }) {
       const result = await response.json();
 
       if (response.ok) {
-        console.log('로그인 성공:', result);
+        console.log('로그인 성공:', result['nickname']);
         onSuccess?.(result); // 로그인 성공 시 부모에게 알림 
       } else {
         alert(result.message || '로그인 실패');
@@ -47,8 +47,8 @@ export default function SignIn({ onSuccess }) {
       <div className="signin-field">
         <label>아이디</label>
         <input
-          id="id"
-          name="id"
+          id="userId"
+          name="userId"
           type="text"
           value={form.id}
           onChange={handleChange}
@@ -60,8 +60,8 @@ export default function SignIn({ onSuccess }) {
       <div className="signin-field">
         <label>비밀번호</label>
         <input
-          id="pw"
-          name="pw"
+          id="userPw"
+          name="userPw"
           type="password"
           value={form.pw}
           onChange={handleChange}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './SignUp.css';
 
-export default function SignUp({onSuccess}) {
+export default function SignUp({onClose}) {
 
   // 유저 정보 초기화 (id, pw, nickname)
   const [form, setForm] = useState({ userId: '', userPw: '', nickname: '' });
@@ -10,6 +10,7 @@ export default function SignUp({onSuccess}) {
   const handleChange = e => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
+    
   };
 
   // '가입하기' (제출) 버튼 클릭 시, 백엔드 서버로 요청 보내기
@@ -17,7 +18,7 @@ export default function SignUp({onSuccess}) {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://your-server.com/api/signup', {
+      const response = await fetch('http://192.168.1.31:8080/user/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -25,11 +26,11 @@ export default function SignUp({onSuccess}) {
         body: JSON.stringify(form) // userId, userPw, nickname 직렬화
       });
 
-      const result = await response.json();
+      const result = await response;
 
       if (response.ok) {
         alert('회원가입 성공!');
-        onSuccess?.(result); // 회원가입 성공 시 부모에게 알림 
+        onClose(); // 회원가입 성공 시 부모에게 알림 
       } else {
         alert(result.message || '회원가입 실패');
       }
