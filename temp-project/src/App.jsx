@@ -8,13 +8,14 @@ import './App.css';
 
 export default function App() {
   return (
-    <DefaultLayout>
-      <Header />
-      <Body>
-        <Map >
-          <Chat/>
-        </Map>
-      </Body>
-    </DefaultLayout>
+    <>
+      <DefaultLayout>
+        <Header />
+        <Body>
+          <Chat />
+          <Map/>
+        </Body>
+      </DefaultLayout>
+    </>
   );
 }
