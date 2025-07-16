@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 import SignUp from './users/SignUp';
 import SignIn from './users/SignIn';
 import Modal from './ui/Modal';
+import Map from './Map';
+import { LoginContext } from './users/LoginContext';
 
 const Header = () => {
 
@@ -12,9 +14,17 @@ const Header = () => {
   const openModal = (type) => setModalType(type);
   const closeModal = () => setModalType(null);
 
+  const setLogin = useContext(LoginContext);
+
   // 로그인 성공 시 호출할 함수
   const handleLoginSuccess = (userData) => {
     setUser(userData);    // user 상태에 로그인 유저 정보 저장
+
+    localStorage.setItem("token", userData.token);
+    localStorage.setItem("nickname", userData.nickname);
+
+    setLogin(true);
+    
     closeModal();         // 모달 닫기
   };
 

@@ -30,7 +30,7 @@ export class TempWorld extends Phaser.Scene {
     // 맵 로딩에 필요한 데이터 fetch
     preload() {
         this.load.image('background', '/assets/mapTile1.png'); // 바닥
-        this.load.image('player', '/assets/example-icon.png');
+        this.load.image('player', '/assets/manWithHat.svg');
     }
 
     // 맵 생성
@@ -39,7 +39,6 @@ export class TempWorld extends Phaser.Scene {
         this.setCharacter(this.getCenterSpawnLocation());
         this.setCameraFollow();
         this.createKeyboardCursor();
-        this.setNickNameAndStatus("Joy", "Online");
     }
 
     // 맵 업데이트
@@ -79,7 +78,7 @@ export class TempWorld extends Phaser.Scene {
     }
 
     setNickNameAndStatus(name, status) {
-        this.nickname = this.add.text(0, 0, '닉네임: Zoey', {
+        this.nickname = this.add.text(0, 0, `닉네임: ${name}`, {
             fontSize: '14px',
             fill: '#fff',
             backgroundColor: 'rgba(0,0,0,0.5)',
@@ -87,7 +86,7 @@ export class TempWorld extends Phaser.Scene {
             align: 'center'
         });
 
-        this.status = this.add.text(0, 0, '상태: Online', {
+        this.status = this.add.text(0, 0, `상태: ${status}`, {
             fontSize: '12px',
             fill: '#0f0',
             backgroundColor: 'rgba(0,0,0,0.3)',
@@ -98,9 +97,19 @@ export class TempWorld extends Phaser.Scene {
 
 
     setCharacter({ spawnX, spawnY }) {
-        this.player = this.physics.add
-            .image(spawnX, spawnY, 'character')
-            .setCollideWorldBounds(true);
+        const nickname = localStorage.getItem("nickname");
+        const token = localStorage.getItem("token");
+
+        if (nickname && token) {
+            this.player = this.physics.add
+                .image(spawnX, spawnY, 'player')
+                .setCollideWorldBounds(true);
+            this.setNickNameAndStatus(nickname, "Online");
+        }
+
+        else {
+            alert("로그인이 필요합니다.")
+        }
 
         return this;
     }
