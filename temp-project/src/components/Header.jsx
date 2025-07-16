@@ -25,7 +25,7 @@ const Header = () => {
 
     setLogin(true);
     
-    closeModal();         // 모달 닫기
+    closeModal();// 모달 닫기
   };
 
   // 로그아웃 처리
