@@ -7,6 +7,7 @@ import Chat from '@/components/chats/Chat'
 import {LoginContext} from './components/users/LoginContext'
 import './App.css';
 import { createContext, useState } from 'react';
+import Main from './components/Main';
 
 export default function App() {
 
@@ -17,6 +18,7 @@ export default function App() {
       <DefaultLayout>
         <LoginContext.Provider value={setLogin}>
           <Header />
+          { ! isLogin && <Main/>}
           <Body>
             { isLogin && <Map/>}
           </Body>
