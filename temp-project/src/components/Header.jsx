@@ -25,8 +25,8 @@ const Header = () => {
 
   return (
     <div>
-      <header style={headerStyle}>
-        <nav style={navStyle}>
+      <header className='header'>
+        <nav className='flex g-10'>
           {user ? (
             <button className="text-button" onClick={handleLogout}>로그아웃</button>
           ) : (
@@ -54,21 +54,6 @@ const Header = () => {
 };
 
 export default Header;
-
-const headerStyle = {
-  width: '100%',
-  backgroundColor: '#222',
-  color: 'white',
-  padding: '10px 20px',
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  boxSizing: 'border-box',
-  display: 'flex',
-  justifyContent: 'flex-end',
-  alignItems: 'center',
-  zIndex: 1000,
-};
 
 const navStyle = {
   display: 'flex',

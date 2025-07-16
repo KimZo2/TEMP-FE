@@ -1,6 +1,6 @@
 const Body = ({ children }) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-row jusify-start">
       {children}
     </div>
   );
