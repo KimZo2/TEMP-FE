@@ -67,7 +67,7 @@ const Main = () => {
             단순한 채팅이 아니라, 같은 공간에 함께 있다는 존재감으로 학습 동기부여를 받아보세요!
           </div>
           <div style={styles.buttonContainer}>
-            {['Sign Up', 'Sign In'].map((label, idx) => (
+            {['방 입장하기'].map((label, idx) => (
               <button
                 key={idx}
                 style={styles.button}

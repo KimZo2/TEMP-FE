@@ -43,7 +43,7 @@ export class TempWorld extends Phaser.Scene {
 
     // 맵 업데이트
     update() {
-        const speed = 400;
+        const speed = 800;
         const p = this.player;
         p.setVelocity(0);
 

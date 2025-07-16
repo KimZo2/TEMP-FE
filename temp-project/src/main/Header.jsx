@@ -4,7 +4,7 @@ import SignUp from '../users/SignUp';
 import SignIn from '../users/SignIn';
 import Modal from '../ui/Modal';
 import Map from '../game/Map';
-import { LoginContext } from '../users/LoginContext';
+import { AuthContext } from '../users/AuthContext';
 
 const Header = () => {
 
@@ -14,7 +14,7 @@ const Header = () => {
   const openModal = (type) => setModalType(type);
   const closeModal = () => setModalType(null);
 
-  const setLogin = useContext(LoginContext);
+  const setLogin = useContext(AuthContext);
 
   // 로그인 성공 시 호출할 함수
   const handleLoginSuccess = (userData) => {
@@ -25,7 +25,7 @@ const Header = () => {
 
     setLogin(true);
     
-    closeModal();         // 모달 닫기
+    closeModal();// 모달 닫기
   };
 
   // 로그아웃 처리
