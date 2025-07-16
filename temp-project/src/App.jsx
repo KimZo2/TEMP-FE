@@ -12,7 +12,6 @@ export default function App() {
       <DefaultLayout>
         <Header />
         <Body>
-          <Chat />
           <Map/>
         </Body>
       </DefaultLayout>

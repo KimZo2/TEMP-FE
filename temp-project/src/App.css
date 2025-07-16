@@ -68,3 +68,9 @@
   cursor: pointer;
 }
 
+/* Map */
+
+.map-container{
+  display: flex;
+  justify-content: center;
+}

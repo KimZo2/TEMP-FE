@@ -10,7 +10,6 @@ export default function Map({ children }) {
   useEffect(() => {
 
     const config = configure(container.current);
-
     gameRef.current = createGame(config);
 
     return () => terminate(gameRef.current);
@@ -18,8 +17,10 @@ export default function Map({ children }) {
 
   return (
     <>
-      {children}
-      <div ref={container} id="map" className="flex-none w-full h-[600px] bg-black"></div>
+      <div ref={container} id="map-div" className='map-container'>
+        {children}
+      </div>
+      
     </>
   );
 }
