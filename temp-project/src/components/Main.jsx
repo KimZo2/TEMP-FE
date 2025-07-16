@@ -173,14 +173,14 @@ const styles = {
     flexWrap: 'wrap'
   },
   button: {
-    background: 'linear-gradient(90deg, #180b37 0%, #243871 100%)',
+    background: 'linear-gradient(90deg, #4a4a4aff 0%, #464646ff 100%)',
     color: 'white',
     padding: '1rem 2rem',
     borderRadius: '0.5rem',
     border: 'none',
     fontSize: '1.125rem',
     cursor: 'pointer',
-    boxShadow: '0 10px 15px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0 10px 15px rgba(255, 255, 255, 0.1)',
     transition: 'all 0.3s',
     overflow: 'hidden'
   }
